@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+<RelativeLayout
+    android:id="@+id/movieInfo"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#f5f5f5"
+    >
+
+        <ImageView
+            android:id="@+id/thumb"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_width="100dp"
+            android:layout_height="170dp"
+            />
+
+
+        <LinearLayout
+            android:id="@+id/detailInfo"
+            android:layout_toRightOf="@+id/thumb"
+            android:layout_width="match_parent"
+            android:layout_height="198dp"
+            android:orientation="vertical"
+
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            >
+
+            <!-- 제목 -->
+            <TextView
+                android:id="@+id/movietitle"
+                android:textSize="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <!-- 평점 -->
+            <RatingBar
+                android:id="@+id/rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="?android:attr/ratingBarStyleSmall"
+                android:numStars="5"
+                android:isIndicator="true"
+                android:max="5"
+                android:stepSize="0.5"
+                android:layout_margin="3dp"
+                android:layout_marginTop="3dp"
+                />
+
+            <!-- 연도 -->
+            <TextView
+                android:id="@+id/year"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"       />
+
+            <!-- 감독 -->
+            <TextView
+                android:id="@+id/director"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"       />
+
+
+            <!-- 출연배우 -->
+            <TextView
+                android:id="@+id/actor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp" />
+
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/line"
+            android:layout_marginBottom="1dp"
+            android:layout_below="@+id/detailInfo"
+            android:background="#e1e1e1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+</RelativeLayout>
+
+</layout>

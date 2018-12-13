@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<layout xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <LinearLayout android:orientation="vertical"
+        android:background="#f5f5f5"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            >
+
+            <EditText
+                android:layout_height="wrap_content"
+                android:layout_width="0dp" android:layout_marginTop="3dp"
+                android:layout_marginRight="3dp" android:layout_marginLeft="3dp"
+                android:inputType="text" android:hint="영화 제목을 입력하세요" android:layout_weight="3" android:id="@+id/input_movie"/>
+
+            <Button
+                android:id="@+id/search_movie"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_weight="1"
+                android:text="검색" />
+
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:id="@+id/main_recycler"
+            android:scrollbars="vertical" />
+
+
+    </LinearLayout>
+
+</layout>
