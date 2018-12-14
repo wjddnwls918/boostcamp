@@ -7,7 +7,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MovieApi {
+public class MovieRetrofit {
     public MyApi provideMovie() {
         return new Retrofit.Builder()
                 //통신할 서버의 주소

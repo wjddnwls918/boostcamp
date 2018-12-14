@@ -7,5 +7,5 @@ public class MovieResult {
     String total;
     String start;
     String display;
-    ArrayList<MovieItem> items = new ArrayList<>();
+    ArrayList<MovieInfo> items = new ArrayList<>();
 }

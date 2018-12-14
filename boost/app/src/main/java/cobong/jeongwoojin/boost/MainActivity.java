@@ -1,6 +1,5 @@
 package cobong.jeongwoojin.boost;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -38,8 +37,8 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     //RecyclerView
-    static ArrayList<MovieItem> result;
-    static ArrayList<MovieItem> infiniteList;
+    static ArrayList<MovieInfo> result;
+    static ArrayList<MovieInfo> infiniteList;
     static int curPnt;
     LinearLayoutManager linearLayoutManager;
     MyAdapter myAdapter;
@@ -79,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),"검색어를 입력해주세요",Toast.LENGTH_SHORT).show();
                     }else {
                         //영화정보 얻어오기
-                        MyApi api = new MovieApi().provideMovie();
+                        MyApi api = new MovieRetrofit().provideMovie();
                         Observable<MovieResult> observable = api.getMovie(input,100);
                         new CompositeDisposable().add(
                                 observable.subscribeOn(Schedulers.io())
@@ -130,9 +129,9 @@ public class MainActivity extends AppCompatActivity {
     //어뎁터
     public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
-        private List<MovieItem> list;
+        private List<MovieInfo> list;
 
-        public MyAdapter(List<MovieItem> list) {
+        public MyAdapter(List<MovieInfo> list) {
             this.list = list;
         }
 

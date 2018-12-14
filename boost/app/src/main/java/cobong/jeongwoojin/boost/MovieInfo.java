@@ -1,7 +1,7 @@
 package cobong.jeongwoojin.boost;
 
 
-public class MovieItem {
+public class MovieInfo {
 
 
     //제목, 링크, 섬네일, 부제목, 개봉년, 감독, 배우, 평점
@@ -16,7 +16,7 @@ public class MovieItem {
 
     //constructor
 
-    public MovieItem(String title, String link, String image, String subtitle, String pubDate, String director, String actor, String userRating) {
+    public MovieInfo(String title, String link, String image, String subtitle, String pubDate, String director, String actor, String userRating) {
         this.title = title;
         this.link = link;
         this.image = image;
