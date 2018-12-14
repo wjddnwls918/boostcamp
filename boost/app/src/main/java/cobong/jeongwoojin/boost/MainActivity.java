@@ -51,9 +51,6 @@ public class MainActivity extends AppCompatActivity {
     Boolean isScrolling = false;
     int currentItems, totalItems, scrollOutItems;
 
-    //
-    MyApi api;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main);
         imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 
-        api = new MovieApi().provideMovie();
 
         //검색 입력시
         binding.searchMovie.setOnClickListener(new View.OnClickListener() {
@@ -83,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),"검색어를 입력해주세요",Toast.LENGTH_SHORT).show();
                     }else {
                         //영화정보 얻어오기
+                        MyApi api = new MovieApi().provideMovie();
                         Observable<MovieResult> observable = api.getMovie(input,100);
                         new CompositeDisposable().add(
                                 observable.subscribeOn(Schedulers.io())
@@ -98,7 +95,8 @@ public class MainActivity extends AppCompatActivity {
                                     processResponse();
 
                                 }, (e) -> {e.printStackTrace();}
-                                ));
+                                )
+                        );
 
 
                     }
@@ -112,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
 
     //네트워크 연결상태 확인
     private Boolean isNetwork() {
