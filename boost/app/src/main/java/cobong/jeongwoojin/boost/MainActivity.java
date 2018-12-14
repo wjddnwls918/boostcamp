@@ -1,5 +1,6 @@
 package cobong.jeongwoojin.boost;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -81,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
                     if(input.equals("")){
                         Toast.makeText(getApplicationContext(),"검색어를 입력해주세요",Toast.LENGTH_SHORT).show();
                     }else {
-
                         //영화정보 얻어오기
                         Observable<MovieResult> observable = api.getMovie(input,100);
                         new CompositeDisposable().add(
@@ -96,8 +96,11 @@ public class MainActivity extends AppCompatActivity {
                                     Log.d("data test",data.toString());
                                     result = data;
                                     processResponse();
+
                                 }, (e) -> {e.printStackTrace();}
                                 ));
+
+
                     }
 
                 } else {
@@ -146,9 +149,9 @@ public class MainActivity extends AppCompatActivity {
         public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
 
             //이미지 저장
-            if(!result.get(position).image.equals("")) {
+            if(!list.get(position).image.equals("")) {
                 Picasso.get()
-                        .load(result.get(position).image)
+                        .load(list.get(position).image)
                         .resize(100, 170)
                         .error(R.drawable.questionmark)
                         .into(holder.viewItemBinding.thumb);
@@ -157,18 +160,18 @@ public class MainActivity extends AppCompatActivity {
             }
 
             //view_item 정보 저장
-            holder.viewItemBinding.movietitle.setText(Html.fromHtml(result.get(position).title));
-            holder.viewItemBinding.rating.setRating((Float.parseFloat(result.get(position).userRating)/2.0f));
-            holder.viewItemBinding.year.setText(result.get(position).pubDate);
-            holder.viewItemBinding.director.setText(result.get(position).director);
-            holder.viewItemBinding.actor.setText(result.get(position).actor);
+            holder.viewItemBinding.movietitle.setText(Html.fromHtml(list.get(position).title));
+            holder.viewItemBinding.rating.setRating((Float.parseFloat(list.get(position).userRating)/2.0f));
+            holder.viewItemBinding.year.setText(list.get(position).pubDate);
+            holder.viewItemBinding.director.setText(list.get(position).director);
+            holder.viewItemBinding.actor.setText(list.get(position).actor);
 
             //영화 정보 링크 연결
             holder.viewItemBinding.movieInfo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(result.get(position).link));
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(list.get(position).link));
                     startActivity(intent);
                 }
             });
@@ -235,6 +238,7 @@ public class MainActivity extends AppCompatActivity {
                         scrollOutItems = linearLayoutManager.findFirstVisibleItemPosition();
 
                         if(isScrolling && (currentItems + scrollOutItems == totalItems) ) {
+
                             isScrolling = false;
                             fetchData();
                         }
